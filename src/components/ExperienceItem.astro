@@ -1,0 +1,51 @@
+---
+interface Props {
+    date: string;
+    title: string;
+    description: string;
+    link?: string;
+    other?: string;
+}
+const { date, title, description, link, other} = Astro.props;
+---
+
+{other && <h2 class="flex items-center mb-6 text-xl font-semibold dark:text-red-100/90 dark:text-white">{other}</h2>}
+<span
+    class="absolute flex items-center justify-center w-6 h-6 bg-red-900 rounded-full -start-3 ring-8 ring-red-950 dark:ring-red-950 dark:bg-red-900"
+>
+    <svg
+        class="w-2.5 h-2.5 dark:text-red-200 text-white"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+    >
+        <path
+            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+        ></path>
+    </svg>
+</span>
+<h3
+    class="flex items-center mb-1 text-lg font-semibold text-red-600 dark:text-white slide-left"
+>
+    {title}
+</h3>
+<time
+    class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500 slide-left"
+    >{date}</time
+>
+<p class="mb-4 text-base font-normal dark:text-red-200 slide-left">
+    {description}
+</p>
+{
+    link && (
+        <a
+            href={link}
+            target="_blank"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-red-200 focus:text-red-600 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+        >
+            {" "}
+            Drewili{" "}
+        </a>
+    )
+}

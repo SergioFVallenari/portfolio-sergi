@@ -1,0 +1,125 @@
+---
+    import ReactIcon from './Icons/ReactIcon.astro'
+    import TailwindIcon from './Icons/TailwindIcon.astro'
+    import NodejsIcon from './Icons/NodejsIcon.astro'
+    import JavascriptIcon from './Icons/JavascriptIcon.astro'
+    import AstroIcon from './Icons/AstroIcon.astro'
+import LinkIcon from './Icons/LinkIcon.astro'
+    const TAGS = {
+        React:{
+            name:"React",
+            class:"bg-black",
+            icon: ReactIcon
+        },
+        Tailwind:{
+            name:"Tailwind",
+            class:"bg-white text-black",
+            icon: TailwindIcon
+        },
+        NodeJs:{
+            name:"Node.js",
+            class:"bg-[#303030] text-white",
+            icon: NodejsIcon
+        },
+        Javascript:{
+            name:"Javascript",
+            class:"bg-[#303030] text-white rounded",
+            icon: JavascriptIcon
+        },
+        Astro:{
+            name:"Astro",
+            class:"text-white rounded",
+            icon: AstroIcon
+        }
+    }
+    const PROJECTS = [
+        {
+            title:"Portfolio - Sergio Vallenari",
+            description:"Portfolio realizado en Astro 4.0, poniendo en practica conocimientos adquiridos sobre este nuevo Framework",
+            github:"https://github.com/SergioFVallenari/portfolio",
+            link:"",
+            images:"/ImagesProjects/portfolio.webp",
+            tecnologies:[TAGS.Tailwind, TAGS.Javascript, TAGS.Astro]
+        },
+        {
+            title:"Drewili - eCommerce",
+            description:"Este proyecto es un sistema de comercio electrónico (eCommerce) creado para una empresa de Perú, que permite a los usuarios explorar, buscar y comprar productos de diferentes categorías. Proporciona funcionalidades clave como carrito de compras, gestión de usuarios, filtrado de productos y más.",
+            github:"https://github.com/drewilipf/drewili-pf",
+            link:"https://drewilifront.vercel.app",
+            images:"/ImagesProjects/drewili.webp",
+            tecnologies:[TAGS.React, TAGS.Tailwind, TAGS.NodeJs, TAGS.Javascript]
+        },
+        {
+            title:"Pokémon",
+            description:"Aplicación web que permite buscar a tu Pokémon favorito, visualizar información de cada uno, filtrar por su tipo y crear nuevos pokemones.",
+            github:"https://github.com/SergioFVallenari/PI-Pokemon",
+            link:"",
+            images:"/ImagesProjects/pokeApi.webp",
+            tecnologies:[TAGS.React, TAGS.Tailwind, TAGS.NodeJs, TAGS.Javascript]
+        },
+        {
+            title:"Rick & Morty",
+            description:"Proyecto integrador para el bootcamp SoyHenry en donde apliqué conocimientos adquiridos sobre React, NodeJs, Sequelize, PostgreSQL y Javascript",
+            github:"https://github.com/pi-rym/PI-SergioFVallenari",
+            link:"",
+            images:"/ImagesProjects/ricky.webp",
+            tecnologies:[TAGS.React, TAGS.Tailwind, TAGS.NodeJs, TAGS.Javascript]
+        },
+    ]
+    
+---
+
+{
+    PROJECTS.map(({title, description, github, link, images, tecnologies})=>(
+    <div class={` max-w-[80%] bg-red-950/30 border border-gray-200 rounded-lg shadow dark:bg-red-950/30 dark:border-gray-700 my-8 mx-auto slide-left ${Astro.props.class}`}>
+            <a>
+                <img src={images} class="rounded-t-lg slide-left" alt="">
+            </a>
+            <ul class="flex flex-wrap">
+                {tecnologies.map((tecnologie) => (
+                    <li class="p-[4px] text-white slide-left">
+                        <span
+                            class={`flex gap-x-2 text-xs py-1 px-2 rounded-full border ${tecnologie.class}`}
+                        >
+                            <tecnologie.icon class="size-4" />
+                            <h4>{tecnologie.name}</h4>
+                        </span>
+                    </li>
+                ))}
+            </ul>
+            <div class="p-5">
+                <h5 class="mb-2 flex justify-between text-2xl font-bold tracking-tight text-gray-900 dark:text-white slide-left">
+                    {title}
+                    <a href={link} target="_blank">
+                        <LinkIcon class="mb-2 slide-bottom"/>
+                    </a>
+                    </h5>
+                <p class="mb-3 text-gray-700 dark:text-gray-400 slide-left">
+                    {description}
+                </p>
+                <a
+                    href={github}
+                    target="_blank"
+                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600/80 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 slide-left"
+                >
+                    Ir al repo
+                    <svg
+                        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 10"
+                    >
+                        <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                        />
+                    </svg>
+                </a>
+            </div>
+            </div>
+    ))
+}

@@ -1,0 +1,42 @@
+---
+    const ELEMENTS = [
+        {
+            title:"Inicio",
+            label:"inicio",
+            link:"/#inicio"
+        },
+        {
+            title:"Experiencia",
+            label:"experiencia",
+            link:"/#experiencia"
+        },
+        {
+            title:"Proyectos",
+            label:"proyectos",
+            link:"/#proyectos"
+        },
+        {
+            title:"Sobre mí",
+            label:"sobre-mi",
+            link:"/#sobre-mi"
+        },
+        {
+            title:"Contacto",
+            label:"contacto",
+            link:"/#contacto"
+        }
+    ]
+---
+
+<header class="flex justify-center items-center py-3 w-full xl:w-[740px] mx-auto rounded-full border border-red-200 shadow-md shadow-red-900/50 p-4 mt-2 sticky top-2 bg-gray-200 dark:bg-[#290500] z-50">
+    <nav class="flex flex-row lg:gap-x-10 gap-x-6 opacity-80 ">
+        {
+            ELEMENTS.map(element=>(
+            <a href={element.link} aria-label={element.label} class="hover:scale-110 transition hover:text-red-600">
+                {element.title}
+            </a>
+            ))
+        }
+    </nav>
+</header>
+

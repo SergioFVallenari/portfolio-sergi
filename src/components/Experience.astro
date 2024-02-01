@@ -1,0 +1,33 @@
+---
+import ExperienceItems from './ExperienceItem.astro'
+
+    const EXPERIENCE = [
+        {
+            date: "dic. 2023 - ene. 2024",
+            title: "eCommerce - Drewili",
+            description: "Sistema de comercio electrónico (eCommerce) que permite a los usuarios explorar, buscar y comprar productos de diferentes categorías. Proporciona funcionalidades clave como carrito de compras, gestión de usuarios, filtrado de productos y más.",
+            link:"https://drewilifront.vercel.app"
+        },
+        {
+            date: "nov. 2018 - may. 2023",
+            title: "Técnico en reparacion de dispositivos móviles",
+            description: "Realización de diagnósticos de hardware y software en dispositivos móviles y reparación de pantallas rotas, baterías dañadas y otros componentes defectuosos.",
+            other: "Otras experiencias"
+        },
+        {
+            date: "",
+            title: "Esta sección se va a agrandar...próximamente",
+            description: "",
+        },
+    ]
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-4">
+    {
+        EXPERIENCE.map((experience) =>(
+            <li class="mb-10 ms-6">
+                <ExperienceItems {...experience}/>
+                </li>
+                ))
+            }
+</ol>
