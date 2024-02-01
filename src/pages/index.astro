@@ -35,7 +35,7 @@ import CvIcon from '../components/Icons/CvIcon.astro'
 				class="rounded-full mx-auto size-96 object-cover mb-6"
 			/>
 			<h1
-				class="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold flex flex-row gap-x-4 pb-10 text-pretty"
+				class="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold md:flex md:flex-row gap-x-4 pb-10 text-pretty"
 			>
 				Hola! Soy <span class="text-red-600">Sergio</span>
 				<a
@@ -55,7 +55,7 @@ import CvIcon from '../components/Icons/CvIcon.astro'
 				Destacado por habilidades colaborativas, contribuyendo al éxito
 				del equipo y alcanzando objetivos compartidos.
 			</h2>
-			<nav class="flex gap-x-2 lg:gap-x-4 mt-8">
+			<nav class="flex md:flex-row flex-col md:gap-y-0 gap-y-2 gap-x-2 lg:gap-x-4 mt-8">
 				<Social href="https://www.linkedin.com/in/sergiovallenari">
 					<LinkedinIcon class="size-6" />
 					Linkedin
@@ -145,7 +145,7 @@ import CvIcon from '../components/Icons/CvIcon.astro'
     const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5
+        threshold: 0.2
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
