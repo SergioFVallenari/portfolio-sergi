@@ -1,33 +1,41 @@
 ---
-import ExperienceItems from './ExperienceItem.astro'
+import ExperienceItems from "./ExperienceItem.astro";
 
-    const EXPERIENCE = [
-        {
-            date: "dic. 2023 - ene. 2024",
-            title: "eCommerce - Drewili",
-            description: "Sistema de comercio electrónico (eCommerce) que permite a los usuarios explorar, buscar y comprar productos de diferentes categorías. Proporciona funcionalidades clave como carrito de compras, gestión de usuarios, filtrado de productos y más.",
-            link:"https://drewilifront.vercel.app"
-        },
-        {
-            date: "nov. 2018 - may. 2023",
-            title: "Técnico en reparacion de dispositivos móviles",
-            description: "Realización de diagnósticos de hardware y software en dispositivos móviles y reparación de pantallas rotas, baterías dañadas y otros componentes defectuosos.",
-            other: "Otras experiencias"
-        },
-        {
-            date: "",
-            title: "Esta sección se va a agrandar...próximamente",
-            description: "",
-        },
-    ]
+const EXPERIENCE = [
+    {
+        date: "Mar. 2024 - actualidad",
+        title: "Fullstack Developer - Eurekaplicaciones",
+        description: "Brindo soporte técnico y actualizaciones a aplicaciones web existentes. Colaboro en el diseño y la implementación de nuevas características y funcionalidades. Trabajo en equipo para garantizar la entrega oportuna de proyectos según los requisitos del cliente. Participo en la resolución de problemas y la optimización del rendimiento de las aplicaciones. Mantengo un enfoque proactivo en la mejora continua de los procesos de desarrollo y la calidad del código.",
+        link: "https://eurekaplicaciones.com",
+    },
+    {
+        date: "dic. 2023 - ene. 2024",
+        title: "eCommerce - Drewili",
+        description:
+            "Sistema de comercio electrónico (eCommerce) que permite a los usuarios explorar, buscar y comprar productos de diferentes categorías. Proporciona funcionalidades clave como carrito de compras, gestión de usuarios, filtrado de productos y más.",
+        link: "https://drewilifront.vercel.app",
+    },
+    {
+        date: "nov. 2018 - may. 2023",
+        title: "Técnico en reparacion de dispositivos móviles",
+        description:
+            "Realización de diagnósticos de hardware y software en dispositivos móviles y reparación de pantallas rotas, baterías dañadas y otros componentes defectuosos.",
+        other: "Otras experiencias",
+    },
+    {
+        date: "",
+        title: "Esta sección se va a agrandar...próximamente",
+        description: "",
+    },
+];
 ---
 
 <ol class="relative border-s border-gray-200 dark:border-gray-700 ml-4">
     {
-        EXPERIENCE.map((experience) =>(
+        EXPERIENCE.map((experience) => (
             <li class="mb-10 ms-6">
-                <ExperienceItems {...experience}/>
-                </li>
-                ))
-            }
+                <ExperienceItems {...experience} />
+            </li>
+        ))
+    }
 </ol>
