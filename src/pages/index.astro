@@ -21,10 +21,13 @@ import PhpIcon from "../components/Icons/PhpIcon.astro";
 import HtmlIcon from "../components/Icons/HtmlIcon.astro";
 import CssIcon from "../components/Icons/CssIcon.astro";
 import SequelizeIcon from "../components/Icons/SequelizeIcon.astro";
-import AstroIcon from "../components/Icons/AstroIcon.astro";
 import AboutIcon from "../components/Icons/AboutIcon.astro";
-import CvIcon from '../components/Icons/CvIcon.astro'
+import GoogleCloudIcon from "../components/Icons/GoogleCloudIcon.astro";
+import CvIcon from "../components/Icons/CvIcon.astro";
 import Angular from "../components/Icons/Angular.astro";
+import TypescriptIcon from "../components/Icons/TypescriptIcon.astro";
+import FirebaseIcon from "../components/Icons/FirebaseIcon.astro";
+import ExpressIcon from "../components/Icons/ExpressIcon.astro";
 ---
 
 <Layout title="Sergio Vallenari, Programador Web">
@@ -38,7 +41,7 @@ import Angular from "../components/Icons/Angular.astro";
 			<h1
 				class="text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold md:flex md:flex-row gap-x-4 pb-10 text-pretty items-center justify-center text-center"
 			>
-				Hola! Soy <span class="text-red-600">Sergio</span>
+				Hola! Soy Sergio
 				<a
 					href="https://www.linkedin.com/in/sergiovallenari"
 					target="_blank"
@@ -47,16 +50,18 @@ import Angular from "../components/Icons/Angular.astro";
 					<Badge>Ready to work</Badge>
 				</a>
 			</h1>
-			<h2 class="text-xl opacity-90 p-2 text-center">
-				Desarrollador Web Junior con experiencia en <span
-					class="font-bold text-red-600"
-					>JavaScript, React, Node.js y Redux Toolkit</span
-				>, así como en bases de datos relacionales como
-				<span class="font-bold opacity-80">MySQL y PostgreSQL</span>.
-				Destacado por habilidades colaborativas, contribuyendo al éxito
-				del equipo y alcanzando objetivos compartidos.
+			<h2 class="text-red-600 text-xl opacity-90 p-2 text-center">
+				Fullstack Developer
 			</h2>
-			<nav class="flex md:flex-row flex-col md:gap-y-0 gap-y-2 gap-x-2 lg:gap-x-4 mt-8 items-center justify-center" >
+			<h2 class="text-xl opacity-90 p-2 text-center">
+				Desarrollo aplicaciones web modernas utilizando React,
+				TypeScript, Node.js y bases de datos SQL. Me apasiona resolver
+				problemas, aprender nuevas tecnologías y transformar ideas en
+				soluciones reales.
+			</h2>
+			<nav
+				class="flex md:flex-row flex-col md:gap-y-0 gap-y-2 gap-x-2 lg:gap-x-4 mt-8 items-center justify-center"
+			>
 				<Social href="https://www.linkedin.com/in/sergiovallenari">
 					<LinkedinIcon class="size-6" />
 					Linkedin
@@ -72,32 +77,153 @@ import Angular from "../components/Icons/Angular.astro";
 			</nav>
 		</SectionContainer>
 		<SectionContainer class="lg:my-32 mt-20">
-			<hr class="mb-6">
+			<hr class="mb-6" />
+
 			<h2
 				class="text-4xl font-bold flex flex-row gap-x-4 pb-10 items-center"
 			>
-				Habilidades Técnicas
+				Stack tecnológico
 			</h2>
-			<SectionContainer
-				class="flex flex-wrap items-center justify-center gap-y-8 gap-x-8 slide-bottom"
-			>
-				<JavascriptIcon class="size-12 lg:size-20 rounded"/>
-				<ReactIcon class="size-12 lg:size-20" />
-				<NodejsIcon class="size-12 lg:size-20" />
-				<TailwindIcon class="size-12 lg:size-20 bg-white rounded" />
-				<ReduxIcons class="size-12 lg:size-20" />
-				<MySqlIcon class="size-12 lg:size-20" />
-				<PostgreIcon class="size-12 lg:size-20" />
-				<PhpIcon class="size-12 lg:size-20 bg-[#AEB2D5] rounded" />
-				<HtmlIcon class="size-12 lg:size-20" />
-				<CssIcon class="size-12 lg:size-20" />
-				<SequelizeIcon class="size-12 lg:size-20" />
-				<AstroIcon class="size-12 lg:size-20" />
-				<Angular class="size-12 lg:size-20"/>
-			</SectionContainer>
+
+			<div class="space-y-14 slide-bottom">
+				<!-- Frontend -->
+				<div>
+					<h3 class="text-2xl font-semibold mb-8 text-center">
+						Frontend
+					</h3>
+
+					<div
+						class="flex flex-wrap items-start justify-center gap-x-10 gap-y-10"
+					>
+						<div class="flex flex-col items-center gap-3">
+							<JavascriptIcon
+								class="size-12 lg:size-20 rounded"
+							/>
+							<Badge>JavaScript</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<TypescriptIcon class="size-12 lg:size-20" />
+							<Badge>TypeScript</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<ReactIcon class="size-12 lg:size-20" />
+							<Badge>React</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<ReduxIcons class="size-12 lg:size-20" />
+							<Badge>Redux Toolkit</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<TailwindIcon
+								class="size-12 lg:size-20 bg-white rounded"
+							/>
+							<Badge>Tailwind CSS</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<HtmlIcon class="size-12 lg:size-20" />
+							<Badge>HTML</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<CssIcon class="size-12 lg:size-20" />
+							<Badge>CSS</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<Angular class="size-12 lg:size-20" />
+							<Badge>Angular</Badge>
+						</div>
+					</div>
+				</div>
+
+				<!-- Backend -->
+				<div>
+					<h3 class="text-2xl font-semibold mb-8 text-center">
+						Backend
+					</h3>
+
+					<div
+						class="flex flex-wrap items-start justify-center gap-x-10 gap-y-10"
+					>
+						<div class="flex flex-col items-center gap-3">
+							<NodejsIcon class="size-12 lg:size-20" />
+							<Badge>Node.js</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<ExpressIcon class="size-12 lg:size-20" />
+							<Badge>Express</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<PhpIcon
+								class="size-12 lg:size-20 bg-[#AEB2D5] rounded"
+							/>
+							<Badge>PHP</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<SequelizeIcon class="size-12 lg:size-20" />
+							<Badge>Sequelize</Badge>
+						</div>
+					</div>
+				</div>
+
+				<!-- Bases de datos -->
+				<div>
+					<h3 class="text-2xl font-semibold mb-8 text-center">
+						Bases de datos
+					</h3>
+
+					<div
+						class="flex flex-wrap items-start justify-center gap-x-10 gap-y-10"
+					>
+						<div class="flex flex-col items-center gap-3">
+							<MySqlIcon class="size-12 lg:size-20" />
+							<Badge>MySQL</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<PostgreIcon class="size-12 lg:size-20" />
+							<Badge>PostgreSQL</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<FirebaseIcon class="size-12 lg:size-20" />
+							<Badge>Firebase RT</Badge>
+						</div>
+					</div>
+				</div>
+
+				<!-- Cloud & Tools -->
+				<div>
+					<h3 class="text-2xl font-semibold mb-8 text-center">
+						Cloud & Tools
+					</h3>
+
+					<div
+						class="flex flex-wrap items-start justify-center gap-x-10 gap-y-10"
+					>
+						<div class="flex flex-col items-center gap-3">
+							<FirebaseIcon class="size-12 lg:size-20" />
+							<Badge>Firebase Storage</Badge>
+						</div>
+
+						<div class="flex flex-col items-center gap-3">
+							<GoogleCloudIcon class="size-12 lg:size-20" />
+							<Badge>Google Cloud</Badge>
+						</div>
+					</div>
+				</div>
+			</div>
 		</SectionContainer>
 		<SectionContainer class="mt-20" id="experiencia">
-			<hr class="mb-6">
+			<hr class="mb-6" />
 			<h2
 				class="text-4xl font-bold flex flex-row gap-x-4 pb-10 items-center"
 			>
@@ -107,76 +233,181 @@ import Angular from "../components/Icons/Angular.astro";
 			<Experience />
 		</SectionContainer>
 		<SectionContainer class="pt-32" id="proyectos">
-			<hr class="mb-6">
+			<hr class="mb-6" />
 			<h2
 				class="text-4xl font-bold flex flex-row gap-x-4 pb-10 items-center"
 			>
 				<CodeIcon class="size-6" />
-				Proyectos
+				Proyectos personales
 			</h2>
-			<Projects/>
+			<Projects />
 		</SectionContainer>
 		<SectionContainer id="sobre-mi" class="py-32">
-			<hr class="mb-6">
-			<h2 class="text-4xl font-bold flex flex-row gap-x-4 pb-10 items-center">
-				<AboutIcon class="size-6" />
-				Sobre mí
-			</h2>
-			<div class="lg:flex items-center">
-				<img src="/Sergio2.png" alt="" class="md:hidden size-96 m-2 rounded-full mx-auto fade-in drop-shadow-2xl">
-			<div class="lg:w-[50%]">
-				<p class="text-xl opacity-90 text-pretty slide-bottom text-center">
-					Hola! Soy Sergio, músico y programador web. Comencé mi carrera como programador en el 2021 cuando pude comprarme mi primera PC, desde ese entonces fui estudiando de manera autodidacta, leyendo documentación o viendo videos por internet. Aprendí sobre <span class="font-bold text-red-600  dark:text-red-400 opacity-80">HTML, CSS y Javascript</span> lo cual me motivó para adentrarme en este maravilloso mundo.
-					<br>En el 2022 hice una diplomatura en Programación Web Fullstack, adquiriendo asi conocimientos sobre <span class="font-bold text-red-600 dark:text-red-400 opacity-80">PHP y MySQL</span>.
-				</p>
-				<br> 
-				<br>
-				<p class="text-xl opacity-90 text-pretty slide-bottom text-center">
-					Luego apliqué al bootcamp <span class="font-bold text-yellow-600">SoyHenry</span> en donde aprendi sobre <span class="font-bold text-red-600 dark:text-red-400 opacity-80">React, ExpressJs, NodeJs, Sequelize, PostgreSQL, Redux y más.</span> Tuve el honor de ganar el concurso a uno de los tres mejores proyectos integradores de este bootcamp y quedar seleccionado como el <span class="font-bold text-yellow-600">HENRY ROCKSTAR</span> de mi cohorte. Actualmente continúo reforzando mis conocimientos, aprendiendo nuevas tecnologías y creando proyectos personales y para clientes.
-					<br>
-					<br>
-					<span class="rounded-full border border-black/10 hover:scale-105 transition bg-red-600 flex justify-center items-center gap-x-2 py-2 px-4"><CvIcon class="mx-4"/><a href="/SergioVallenari.pdf" target="_blank">Este es mi CV</span></a>
-				</p>
+	<hr class="mb-6" />
 
-			</div>
-				<img src="/Sergio2.png" alt="" class="hidden md:block size-96 m-2 rounded-full mx-auto fade-in drop-shadow-2xl object-contain">
-			</div>
-		</SectionContainer>
+	<h2
+		class="text-4xl font-bold flex flex-row gap-x-4 pb-10 items-center"
+	>
+		<AboutIcon class="size-6" />
+		Sobre mí
+	</h2>
+
+	<div class="lg:flex items-center">
+		<img
+			src="/Sergio2.png"
+			alt="Sergio"
+			class="md:hidden size-96 m-2 rounded-full mx-auto fade-in drop-shadow-2xl"
+		/>
+
+		<div class="lg:w-[50%]">
+
+			<p
+				class="text-xl opacity-90 text-pretty slide-bottom text-center"
+			>
+				¡Hola! Soy Sergio, músico y desarrollador web. Comencé mi
+				camino en la programación en 2021, estudiando de manera
+				autodidacta a través de documentación, cursos y proyectos
+				personales. Comencé aprendiendo
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					HTML, CSS y JavaScript
+				</span>
+				, lo que despertó mi interés por el desarrollo web y me
+				motivó a seguir creciendo en este mundo.
+
+				<br /><br />
+
+				En 2022 realicé una diplomatura en
+				Programación Web Full Stack, donde adquirí conocimientos de
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					PHP y MySQL
+				</span>.
+			</p>
+
+			<br />
+
+			<p
+				class="text-xl opacity-90 text-pretty slide-bottom text-center"
+			>
+				Posteriormente, profundicé mi formación realizando el bootcamp
+				<span class="font-bold text-yellow-600">
+					SoyHenry
+				</span>
+				, donde trabajé con tecnologías como
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					React, Node.js, Express, Sequelize, PostgreSQL y Redux
+				</span>.
+				Durante esta etapa, uno de mis proyectos fue seleccionado
+				entre los tres mejores proyectos integradores de mi cohorte
+				y fui reconocido como
+				<span class="font-bold text-yellow-600">
+					HENRY ROCKSTAR
+				</span>.
+			</p>
+
+			<br />
+
+			<p
+				class="text-xl opacity-90 text-pretty slide-bottom text-center"
+			>
+				A partir de mi formación, tuve la oportunidad de llevar estos
+				conocimientos a proyectos reales dentro de mi experiencia
+				profesional, participando en el desarrollo y mantenimiento de
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					integraciones con diferentes plataformas de e-commerce
+				</span>,
+				trabajando con APIs y servicios como
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					MercadoLibre, WooCommerce, Shopify, Wix, Tiendanube,
+					VTEX, Magento y PrestaShop
+				</span>,
+				entre otros.
+			</p>
+
+			<br />
+
+			<p
+				class="text-xl opacity-90 text-pretty slide-bottom text-center"
+			>
+				En estos proyectos participé en el desarrollo de soluciones
+				para la
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					sincronización de productos, órdenes y stock
+				</span>,
+				además de trabajar con
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					APIs REST, bases de datos, autenticación y diferentes
+					servicios externos
+				</span>.
+			</p>
+
+			<br />
+
+			<p
+				class="text-xl opacity-90 text-pretty slide-bottom text-center"
+			>
+				Actualmente continúo desarrollándome como
+				<span class="font-bold text-red-600 dark:text-red-400 opacity-80">
+					Full Stack Developer
+				</span>,
+				aprendiendo nuevas tecnologías y buscando nuevos desafíos
+				que me permitan seguir creciendo tanto profesional como
+				personalmente.
+
+				<br /><br />
+
+				<a
+					href="/SergioVallenari.pdf"
+					target="_blank"
+					class="rounded-full border border-black/10 hover:scale-105 transition bg-red-600 flex justify-center items-center gap-x-2 py-2 px-4"
+				>
+					<CvIcon class="mx-4" />
+					Este es mi CV
+				</a>
+			</p>
+
+		</div>
+
+		<img
+			src="/Sergio2.png"
+			alt="Sergio"
+			class="hidden md:block size-96 m-2 rounded-full mx-auto fade-in drop-shadow-2xl object-contain"
+		/>
+	</div>
+</SectionContainer>
 	</main>
 </Layout>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-    const fadeElements = document.querySelectorAll('.fade-in');
-	const slideElementsLeft = document.querySelectorAll('.slide-left')
-	const slideElementsBottom = document.querySelectorAll('.slide-bottom')
+	document.addEventListener("DOMContentLoaded", function () {
+		const fadeElements = document.querySelectorAll(".fade-in");
+		const slideElementsLeft = document.querySelectorAll(".slide-left");
+		const slideElementsBottom = document.querySelectorAll(".slide-bottom");
 
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-    };
+		const options = {
+			root: null,
+			rootMargin: "0px",
+			threshold: 0.2,
+		};
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.intersectionRatio > 0) {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
+		const observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.intersectionRatio > 0) {
+					entry.target.classList.add("appear");
+					observer.unobserve(entry.target);
+				}
+			});
+		}, options);
 
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
+		fadeElements.forEach((element) => {
+			observer.observe(element);
+		});
 
-	slideElementsLeft.forEach(element=>{
-		observer.observe(element)
-	})
+		slideElementsLeft.forEach((element) => {
+			observer.observe(element);
+		});
 
-	slideElementsBottom.forEach(element=>{
-		observer.observe(element)
-	})
-});
-
+		slideElementsBottom.forEach((element) => {
+			observer.observe(element);
+		});
+	});
 </script>
