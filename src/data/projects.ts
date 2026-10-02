@@ -66,7 +66,7 @@ Construí desde cero una plataforma de integraciones que centralizó la conexió
 También desarrollé aplicaciones mobile y web para gestionar el ingreso de transportistas al depósito, permitiendo visualizar en tiempo real qué espacios de estacionamiento estaban disponibles, qué transportistas se encontraban esperando para ingresar y cuáles estaban realizando la carga de mercadería. La información se actualizaba en tiempo real mediante Firebase.`,
 		image: "/ImagesProjects/flexit.png",
 		technologies: ["Php", "MySql", "React", "NodeJs", "Typescript", "Firebase", "GoogleCloud", "Capacitor", "AWS"],
-		other: "Actualmente, Flexit es una empresa líder en logística y transporte, y sus soluciones han sido implementadas en varias ciudades de Argentina y otros países de Latinoamérica.",
+		other: "Actualmente, Flexit es una empresa líder en logística y transporte, y sus soluciones han sido implementadas en varias ciudades de Argentina",
 	},
 	{
 		kind: "profesional",
