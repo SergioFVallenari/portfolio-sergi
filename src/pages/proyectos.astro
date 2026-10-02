@@ -1,0 +1,139 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Projects from "../components/Projects.astro";
+import { PROJECTS, type ProjectKind } from "../data/projects";
+
+const total = PROJECTS.filter((project) => !project.draft).length;
+
+const counter = (kind: ProjectKind) => {
+	const count = PROJECTS.filter(
+		(project) => project.kind === kind && !project.draft,
+	).length;
+	return count > 0 ? String(count).padStart(2, "0") : "—";
+};
+---
+
+<Layout
+	title="Proyectos | Sergio Vallenari"
+	description="Proyectos de Sergio Vallenari: freelance, profesionales y universitarios. Aplicaciones web, eCommerce y herramientas con React, Node.js, TypeScript y PostgreSQL."
+>
+	<div class="mx-auto max-w-shell px-5 sm:px-8">
+		<header class="pb-10 pt-14 sm:pt-20 lg:pb-14 lg:pt-28">
+			<p
+				class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute"
+			>
+				<span class="text-accent">Proyectos</span> — selección de {total}
+			</p>
+			<h1
+				transition:name="page-title"
+				class="mt-6 max-w-[20ch] text-balance text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-ink"
+			>
+				Cosas que hice y puedo mostrar
+			</h1>
+		</header>
+
+		<div class="tab-group pb-20 lg:pb-28">
+			<fieldset>
+				<legend class="sr-only">Categorías de proyectos</legend>
+				<input
+					type="radio"
+					name="proyectos-tab"
+					id="tab-profesionales"
+					class="sr-only"
+					checked
+				/>
+				<input
+					type="radio"
+					name="proyectos-tab"
+					id="tab-freelance"
+					class="sr-only"
+				/>
+				<input
+					type="radio"
+					name="proyectos-tab"
+					id="tab-universitarios"
+					class="sr-only"
+				/>
+				<input
+					type="radio"
+					name="proyectos-tab"
+					id="tab-personales"
+					class="sr-only"
+				/>
+
+				<div class="flex flex-wrap gap-x-8 gap-y-1 border-b border-line">
+				<label
+					for="tab-profesionales"
+					class="tab-label -mb-px cursor-pointer select-none border-b-2 border-transparent pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute transition-colors hover:text-ink"
+					>Profesionales<span class="ml-2 text-ink-mute"
+						>{counter("profesional")}</span
+					></label
+				>
+				<label
+					for="tab-freelance"
+					class="tab-label -mb-px cursor-pointer select-none border-b-2 border-transparent pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute transition-colors hover:text-ink"
+					>Freelance<span class="ml-2 text-ink-mute"
+						>{counter("freelance")}</span
+					></label
+				>
+				<label
+					for="tab-universitarios"
+					class="tab-label -mb-px cursor-pointer select-none border-b-2 border-transparent pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute transition-colors hover:text-ink"
+					>Universitarios<span class="ml-2 text-ink-mute"
+						>{counter("universitario")}</span
+					></label
+				>
+				<label
+					for="tab-personales"
+					class="tab-label -mb-px cursor-pointer select-none border-b-2 border-transparent pb-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute transition-colors hover:text-ink"
+					>Personales<span class="ml-2 text-ink-mute"
+						>{counter("personal")}</span
+					></label
+				>
+				</div>
+			</fieldset>
+
+			<div class="hidden pt-10 lg:pt-12" id="panel-profesionales">
+				<h2 class="sr-only">Proyectos profesionales</h2>
+				<Projects kind="profesional" />
+			</div>
+			<div class="hidden pt-10 lg:pt-12" id="panel-freelance">
+				<h2 class="sr-only">Proyectos freelance</h2>
+				<Projects kind="freelance" />
+			</div>
+			<div class="hidden pt-10 lg:pt-12" id="panel-universitarios">
+				<h2 class="sr-only">Proyectos universitarios</h2>
+				<Projects kind="universitario" />
+			</div>
+			<div class="hidden pt-10 lg:pt-12" id="panel-personales">
+				<h2 class="sr-only">Proyectos personales</h2>
+				<Projects kind="personal" />
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.tab-group:has(#tab-freelance:checked) #panel-freelance,
+	.tab-group:has(#tab-profesionales:checked) #panel-profesionales,
+	.tab-group:has(#tab-universitarios:checked) #panel-universitarios,
+	.tab-group:has(#tab-personales:checked) #panel-personales {
+		display: block;
+	}
+
+	.tab-group:has(#tab-freelance:checked) label[for="tab-freelance"],
+	.tab-group:has(#tab-profesionales:checked) label[for="tab-profesionales"],
+	.tab-group:has(#tab-universitarios:checked) label[for="tab-universitarios"],
+	.tab-group:has(#tab-personales:checked) label[for="tab-personales"] {
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+
+	.tab-group:has(#tab-freelance:focus-visible) label[for="tab-freelance"],
+	.tab-group:has(#tab-profesionales:focus-visible) label[for="tab-profesionales"],
+	.tab-group:has(#tab-universitarios:focus-visible) label[for="tab-universitarios"],
+	.tab-group:has(#tab-personales:focus-visible) label[for="tab-personales"] {
+		outline: 2px solid var(--accent);
+		outline-offset: 4px;
+	}
+</style>

@@ -1,0 +1,136 @@
+---
+import { SITE } from "../data/site";
+import ArrowLink from "./ArrowLink.astro";
+
+type Segment = string | { highlight: string; tone?: "warning" };
+
+const paragraphs: { content: Segment[]; lead?: boolean }[] = [
+	{
+		lead: true,
+		content: [
+			"¡Hola! Soy Sergio,",
+			{ highlight: "desarrollador web Full Stack" },
+			".",
+		],
+	},
+	{
+		content: [
+			"Comencé mi camino en la programación en ",
+			{ highlight: String(SITE.since) },
+			", de manera autodidacta, aprendiendo a través de documentación, cursos y proyectos personales. Empecé con ",
+			{ highlight: "HTML, CSS y JavaScript" },
+			", y con el tiempo fui incorporando nuevas tecnologías y profundizando en el desarrollo de aplicaciones web.",
+		],
+	},
+	{
+		content: [
+			"En 2022 realicé una ",
+			{ highlight: "Diplomatura en Programación Web Full Stack" },
+			", donde adquirí conocimientos de ",
+			{ highlight: "PHP y MySQL" },
+			". Posteriormente, profundicé mi formación en ",
+			{ highlight: "SoyHenry", tone: "warning" },
+			", donde trabajé con ",
+			{
+				highlight: "React, Node.js, Express, Sequelize, PostgreSQL y Redux",
+			},
+			". Durante esta etapa, uno de mis proyectos fue seleccionado entre los tres mejores proyectos integradores de mi cohorte y fui reconocido como ",
+			{ highlight: "HENRY ROCKSTAR", tone: "warning" },
+			".",
+		],
+	},
+	{
+		content: [
+			"Mi experiencia profesional me permitió llevar estos conocimientos a proyectos reales, participando en el desarrollo, mantenimiento y evolución de ",
+			{ highlight: "aplicaciones web y mobile" },
+			". Trabajé en soluciones de gestión logística, aplicaciones en tiempo real e integraciones con distintas plataformas de e-commerce como ",
+			{
+				highlight:
+					"MercadoLibre, WooCommerce, Shopify, Wix, Tiendanube, VTEX, Magento y PrestaShop",
+			},
+			".",
+		],
+	},
+	{
+		content: [
+			"Participé en el desarrollo de soluciones para la ",
+			{ highlight: "sincronización de productos, órdenes y stock" },
+			", trabajando con ",
+			{
+				highlight:
+					"APIs REST, bases de datos, autenticación, webhooks y servicios externos",
+			},
+			". También tuve la oportunidad de desarrollar aplicaciones de principio a fin, participando tanto en la base de datos como en el backend y frontend.",
+		],
+	},
+	{
+		content: [
+			"Actualmente continúo desarrollándome como ",
+			{ highlight: "Full Stack Developer" },
+			", incorporando nuevas tecnologías y buscando nuevos desafíos donde pueda seguir creando soluciones y aportando valor.",
+		],
+	},
+];
+
+const firstBody = paragraphs.findIndex((paragraph) => !paragraph.lead);
+---
+
+<div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+	<div class="lg:col-span-7 lg:col-start-1">
+		{
+			paragraphs.map((paragraph, position) => (
+				<p
+					class:list={[
+						"max-w-prose",
+						paragraph.lead
+							? "text-[19px] font-medium leading-[1.6] text-ink"
+							: "text-[17px] leading-[1.75] text-ink-soft",
+						position > 0 && "mt-6",
+						position === firstBody &&
+							"first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-[3.4rem] first-letter:font-semibold first-letter:leading-[0.8] first-letter:text-accent",
+					]}
+				>
+					{paragraph.content.map((part) =>
+						typeof part === "string" ? (
+							part
+						) : (
+							<strong
+								class:list={[
+									"font-semibold",
+									part.tone === "warning"
+										? "text-ink"
+										: "text-accent",
+								]}
+							>
+								{part.highlight}
+							</strong>
+						),
+					)}
+				</p>
+			))
+		}
+
+		<div class="mt-10 flex flex-wrap items-center gap-8 border-t border-line pt-6">
+			<ArrowLink href={SITE.cv} external>Descargar CV</ArrowLink>
+			<ArrowLink href="/contacto">Contacto</ArrowLink>
+		</div>
+	</div>
+
+	<div class="lg:col-span-4 lg:col-start-9">
+		<div class="lg:sticky lg:top-28">
+			<img
+				src={SITE.about.aboutImage}
+				alt="Sergio Vallenari"
+				width="480"
+				height="480"
+				loading="lazy"
+				class="aspect-square w-full object-cover grayscale-[20%]"
+			/>
+			<p
+				class="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-mute"
+			>
+				Músico y desarrollador web
+			</p>
+		</div>
+	</div>
+</div>

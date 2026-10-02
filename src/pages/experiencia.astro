@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Experience from "../components/Experience.astro";
+---
+
+<Layout
+	title="Experiencia | Sergio Vallenari"
+	description="Trayectoria como Full Stack Developer: Eurekaplicaciones, proyectos freelance, eCommerce y soporte técnico en dispositivos móviles."
+>
+	<div class="mx-auto max-w-shell px-5 sm:px-8">
+		<header class="pb-10 pt-14 sm:pt-20 lg:pb-14 lg:pt-28">
+			<p
+				class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute"
+			>
+				<span class="text-accent">Experiencia</span> — 2018 / hoy
+			</p>
+			<h1
+				transition:name="page-title"
+				class="mt-6 max-w-[18ch] text-balance text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-ink"
+			>
+				Dónde trabajé y qué construí
+			</h1>
+		</header>
+
+		<Section class="pb-20 lg:pb-28">
+			<Experience />
+		</Section>
+	</div>
+</Layout>

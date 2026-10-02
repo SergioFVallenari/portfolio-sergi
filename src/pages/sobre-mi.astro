@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Bio from "../components/Bio.astro";
+import { SITE } from "../data/site";
+
+const years = new Date().getFullYear() - SITE.since;
+---
+
+<Layout
+	title="Sobre mí | Sergio Vallenari"
+	description="Sergio Vallenari, músico y desarrollador web autodidacta. Diplomatura en Programación Web Full Stack, bootcamp SoyHenry y experiencia en integraciones de e-commerce."
+>
+	<div class="mx-auto max-w-shell px-5 sm:px-8">
+		<header class="pb-10 pt-14 sm:pt-20 lg:pb-14 lg:pt-28">
+			<p
+				class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute"
+			>
+				<span class="text-accent">Sobre mí</span> — {years} años en el código
+			</p>
+			<h1
+				transition:name="page-title"
+				class="mt-6 max-w-[20ch] text-balance text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-ink"
+			>
+				De una idea a una solución.
+			</h1>
+		</header>
+
+		<Section class="pb-20 lg:pb-28">
+			<Bio />
+		</Section>
+	</div>
+</Layout>

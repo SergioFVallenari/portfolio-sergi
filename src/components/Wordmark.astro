@@ -1,0 +1,23 @@
+---
+import { SITE } from "../data/site";
+
+interface Props {
+	class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<a
+	href="/"
+	class={`group inline-flex items-baseline gap-2 ${className}`}
+	aria-label={`${SITE.name} - Inicio`}
+>
+	<span
+		class="text-lg font-semibold tracking-[-0.03em] text-ink transition-colors group-hover:text-accent"
+		>SV<span class="text-accent">.</span></span
+	>
+	<span class="hidden font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute sm:inline"
+		>{SITE.name}</span
+	>
+</a>

@@ -1,9 +1,121 @@
-<footer class="flex justify-between items-center w-full xl:w-[1120px] mx-auto rounded-full border border-black dark:border-gray-200 p-4 mb-2">
-    <span class="py-2">© 2024 <a href="https://www.linkedin.com/in/sergiovallenari" target="_blank" class="hover:underline">Sergio Vallenari</a>
-    </span>
-    <div class="flex flex-row gap-x-6 lg:gap-x-10 opacity-80 ">
-        <a href="#sobremi" class="hover:scale-110">Sobre mí</a>
-        <a href="#" class="hover:scale-110">Contacto</a>
-    </div>
-</footer>
+---
+import Wordmark from "./Wordmark.astro";
+import { SITE } from "../data/site";
 
+const year = new Date().getFullYear();
+
+const pathname = Astro.url.pathname.replace(/\/+$/, "");
+const isActive = (href: string) => href.replace(/\/+$/, "") === pathname;
+---
+
+<footer transition:name="site-footer" class="border-t border-line">
+	<div class="mx-auto max-w-shell px-5 sm:px-8">
+		<div class="grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-12">
+			<div class="lg:col-span-5">
+				<Wordmark />
+				<p class="mt-5 max-w-[44ch] text-[15px] leading-relaxed text-ink-soft">
+					{SITE.statement}
+				</p>
+				<p
+					class="mt-7 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-mute"
+				>
+					<span class="size-1.5 rounded-full bg-available"></span>
+					{SITE.availability}
+				</p>
+			</div>
+
+			<nav class="lg:col-span-3" aria-label="Pie de página">
+				<p
+					class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute"
+				>
+					Navegación
+				</p>
+				<ul class="mt-5 space-y-2.5 text-sm">
+					{
+						SITE.nav.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									aria-current={isActive(item.href) ? "page" : undefined}
+									class:list={[
+										"transition-colors hover:text-accent",
+										isActive(item.href) ? "text-ink" : "text-ink-soft",
+									]}
+								>
+									{item.title}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div class="lg:col-span-4">
+				<p
+					class="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-mute"
+				>
+					Contacto
+				</p>
+				<ul class="mt-5 space-y-2.5 text-sm">
+					<li>
+						<a
+							href={`mailto:${SITE.email}`}
+							class="break-all text-ink-soft transition-colors hover:text-accent"
+						>
+							{SITE.email}
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.linkedin.com/in/sergiovallenari"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-accent"
+						>
+							LinkedIn
+							<span aria-hidden="true" class="text-xs">↗</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://github.com/SergioFVallenari"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-accent"
+						>
+							GitHub
+							<span aria-hidden="true" class="text-xs">↗</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href={SITE.cv}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-accent"
+						>
+							Curriculum Vitae
+							<span aria-hidden="true" class="text-xs">↗</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div
+			class="flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute"
+		>
+			<p>© {year} {SITE.name}</p>
+			<p>
+				Hecho con
+				<a
+					href="https://astro.build"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-ink-soft transition-colors hover:text-accent"
+					>Astro</a
+				>
+			</p>
+		</div>
+	</div>
+</footer>

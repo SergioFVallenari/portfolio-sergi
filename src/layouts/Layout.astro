@@ -1,20 +1,46 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { SITE } from "../data/site";
 import "@fontsource-variable/onest";
+
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
+
+const metaDescription =
+	description ??
+	"Sergio Vallenari - Fullstack Developer. Desarrollo aplicaciones web modernas con React, TypeScript, Node.js y bases de datos SQL.";
+const canonical = Astro.site
+	? new URL(Astro.url.pathname, Astro.site).href
+	: undefined;
+const socialImage = Astro.site
+	? new URL(SITE.about.heroImage, Astro.site).href
+	: undefined;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={metaDescription} />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="author" content={SITE.name} />
+		{canonical && <link rel="canonical" href={canonical} />}
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={SITE.name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={metaDescription} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		{socialImage && <meta property="og:image" content={socialImage} />}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={metaDescription} />
+		{socialImage && <meta name="twitter:image" content={socialImage} />}
 		<link
 			href="https://fonts.cdnfonts.com/css/space-mono"
 			rel="stylesheet"
@@ -22,63 +48,147 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/code.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
+		<script is:inline>
+			(function () {
+				function applyTheme() {
+					try {
+						var stored = localStorage.getItem("theme");
+						var prefersDark = window.matchMedia(
+							"(prefers-color-scheme: dark)",
+						).matches;
+						var theme = stored || (prefersDark ? "dark" : "light");
+						document.documentElement.classList.toggle(
+							"dark",
+							theme === "dark",
+						);
+					} catch (e) {}
+				}
+
+				applyTheme();
+				document.addEventListener("astro:after-swap", applyTheme);
+				document.addEventListener("astro:before-swap", function () {
+					document.documentElement.setAttribute(
+						"data-astro-swap",
+						"",
+					);
+				});
+			})();
+		</script>
 	</head>
-	<body class="relative text-black dark:text-white">
-		<div
-			class="absolute inset-0 -z-10 min-h-screen w-full items-center px-5 py-24 bg-gray-200 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] dark:[background:radial-gradient(125%_125%_at_50%_10%,#181217_40%,#290500_100%)]"
-		>
-		</div>
+	<body
+		class="min-h-screen bg-paper font-sans text-ink antialiased transition-colors duration-300"
+	>
+	<a
+		href="#contenido"
+		class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:border focus:border-line focus:bg-paper focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest"
+	>
+		Ir al contenido
+	</a>
+	<div
+		class="page-glow pointer-events-none fixed inset-0 -z-10"
+		aria-hidden="true"
+	>
+	</div>
 		<Header />
-		<slot />
+		<main id="contenido" data-enter class="flex-1">
+			<slot />
+		</main>
 		<Footer />
-	</body><style is:global>
-		:root {
-			color-scheme: light dark;
-		}
-		.fade-in {
-			opacity: 0;
-			transition: opacity 0.8s ease-in-out;
-		}
-
-		.fade-in.appear {
-			opacity: 1;
-		}
-
-		.slide-left {
-			opacity: 0;
-			transform: translateX(-50%);
-			transition:
-				opacity 0.5s ease-in-out,
-				transform 0.5s ease-in-out;
-		}
-
-		.slide-left.appear {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	
-		.slide-bottom {
-			opacity: 0;
-			transform: translateY(50%);
-			transition:
-				opacity 0.5s ease-in-out,
-				transform 0.5s ease-in-out;
-		}
-
-		.slide-bottom.appear {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	
-		html {
-			font-family: "Space Mono", sans-serif;
-			scroll-behavior: smooth;
-		}
-		body {
-			background-color: #000;
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-		}
-	</style>
+	</body>
 </html>
+<style is:global>
+	:root {
+		color-scheme: light;
+		--paper: 246 245 242;
+		--surface: 255 255 255;
+		--ink: 23 23 20;
+		--ink-soft: 74 74 70;
+		--ink-mute: 107 107 102;
+		--line: 214 211 205;
+		--accent: 185 28 28;
+		--available: 4 120 87;
+	}
+
+	html.dark {
+		color-scheme: dark;
+		--paper: 10 10 11;
+		--surface: 22 22 24;
+		--ink: 244 244 242;
+		--ink-soft: 190 190 186;
+		--ink-mute: 138 138 134;
+		--line: 39 39 42;
+		--accent: 248 113 113;
+		--available: 52 211 153;
+	}
+
+	html,
+	body {
+		overflow-x: clip;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	/* Spotlight glow behind the whole page. One gradient, crossfaded by the
+	   theme: 10% violet on paper, the original 30% on the dark background. */
+	.page-glow::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(
+			ellipse 80% 80% at 50% -20%,
+			rgba(120, 119, 198, 0.3),
+			rgba(255, 255, 255, 0)
+		);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	html.dark .page-glow::before {
+		opacity: 1;
+	}
+
+	::selection {
+		background-color: rgb(var(--accent) / 0.18);
+	}
+
+	:focus-visible {
+		outline: 2px solid rgb(var(--accent));
+		outline-offset: 3px;
+	}
+
+	/* Page entrance: one subtle reveal, first load only.
+	   Route swaps are handled by the view transition crossfade, so the
+	   snapshot of the incoming page must never be captured mid-animation. */
+	[data-enter] {
+		animation: enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	html[data-astro-swap] [data-enter] {
+		animation: none;
+	}
+
+	@keyframes enter {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		[data-enter] {
+			animation: none;
+		}
+
+		.page-glow::before {
+			transition: none;
+		}
+	}
+</style>

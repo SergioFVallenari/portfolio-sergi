@@ -1,93 +1,169 @@
 ---
-    const ELEMENTS = [
-        {
-            title:"Inicio",
-            label:"inicio",
-            link:"/#inicio"
-        },
-        {
-            title:"Experiencia",
-            label:"experiencia",
-            link:"/#experiencia"
-        },
-        {
-            title:"Proyectos",
-            label:"proyectos",
-            link:"/#proyectos"
-        },
-        {
-            title:"Sobre mí",
-            label:"sobre-mi",
-            link:"/#sobre-mi"
-        },
-        {
-            title:"Contacto",
-            label:"contacto",
-            link:"/#contacto"
-        }
-    ]
+import Wordmark from "./Wordmark.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import ArrowLink from "./ArrowLink.astro";
+import { SITE } from "../data/site";
+
+const pathname = Astro.url.pathname.replace(/\/+$/, "");
+const isActive = (href: string) => href.replace(/\/+$/, "") === pathname;
 ---
 
-<header class="flex justify-between lg:justify-center items-center py-3 lg:py-0 w-full xl:w-[740px] mx-auto rounded lg:rounded-full border border-x-red-200 shadow-md shadow-red-900/50 p-4 lg:mt-2 sticky top-0 lg:top-2 bg-red-600 dark:bg-[#290500] z-50">
-    <!-- Botón del menú hamburguesa -->
-    <button id="menu-toggle" class="block lg:hidden focus:outline-none">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    </button>
+<header
+	transition:name="site-header"
+	class="sticky top-0 z-50 border-b border-line bg-paper/80 backdrop-blur-md"
+>
+	<div
+		class="mx-auto flex h-16 max-w-shell items-center justify-between gap-6 px-5 sm:px-8"
+	>
+		<Wordmark />
 
-    <!-- Contenedor del menú -->
-    <nav id="menu" class="hidden lg:flex lg:flex-row lg:gap-x-10 gap-x-6 dark:bg-[#290500] bg-red-600">
-        {
-            ELEMENTS.map(element => (
-                <a href={element.link} aria-label={element.label} class="lg:hover:scale-110 text-white transition text-center hover:text-red-200 py-4 slide-left">
-                    {element.title}
-                    <hr class="md:hidden">
-                </a>
-            ))
-        }
-    </nav>
+		<nav class="hidden items-center gap-7 md:flex" aria-label="Principal">
+			{
+				SITE.nav.map((item) => (
+					<a
+						href={item.href}
+						aria-current={isActive(item.href) ? "page" : undefined}
+						class:list={[
+							"border-b pb-0.5 text-sm transition-colors",
+							isActive(item.href)
+								? "border-accent text-ink"
+								: "border-transparent text-ink-mute hover:border-line hover:text-ink",
+						]}
+					>
+						{item.title}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="flex items-center gap-1">
+			<ThemeToggle />
+			<button
+				id="menu-toggle"
+				type="button"
+				aria-label="Abrir menú"
+				aria-expanded="false"
+				aria-controls="drawer"
+				class="-mr-2 inline-flex size-9 items-center justify-center text-ink transition-colors hover:text-accent md:hidden"
+			>
+				<svg
+					class="size-5"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					aria-hidden="true"
+				>
+					<path id="menu-icon-open" d="M3 7h18M3 17h18"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
 </header>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    const menuLinks = document.querySelectorAll('#menu a'); // Selecciona todos los enlaces dentro del menú
+<div
+	id="drawer"
+	aria-hidden="true"
+	class="invisible fixed inset-0 z-40 opacity-0 transition-[opacity,visibility] duration-300 md:hidden"
+>
+	<div class="absolute inset-0 bg-ink/40 backdrop-blur-sm" data-drawer-overlay></div>
+	<div
+		class="absolute inset-x-0 top-0 border-b border-line bg-paper px-5 pb-10 pt-20 sm:px-8"
+	>
+		<nav class="flex flex-col" aria-label="Menú">
+			{
+				SITE.nav.map((item, index) => (
+					<a
+						href={item.href}
+						aria-current={isActive(item.href) ? "page" : undefined}
+						class:list={[
+							"flex items-baseline justify-between border-b border-line py-4 text-2xl font-medium tracking-[-0.02em] transition-colors",
+							isActive(item.href) ? "text-accent" : "text-ink",
+						]}
+					>
+						{item.title}
+						<span class="font-mono text-[11px] tracking-[0.18em] text-ink-mute">
+							{String(index + 1).padStart(2, "0")}
+						</span>
+					</a>
+				))
+			}
+		</nav>
+		<div class="mt-8 flex flex-wrap items-center gap-6">
+			<ArrowLink href={`mailto:${SITE.email}`} external>Email</ArrowLink>
+			<ArrowLink href="https://github.com/SergioFVallenari" external
+				>GitHub</ArrowLink
+			>
+		</div>
+	</div>
+</div>
 
-    // Función para ocultar el menú
-    function hideMenu() {
-        menu?.classList.remove('open');
-    }
+<script is:inline>
+	(function () {
+		let toggle = null;
+		let drawer = null;
+		let icon = null;
 
-    // Agrega un event listener al botón del menú hamburguesa para abrir y cerrar el menú
-    menuToggle?.addEventListener('click', function() {
-        menu?.classList.toggle('open');
-    });
+		function open() {
+			if (!toggle || !drawer) return;
+			drawer.classList.remove("invisible", "opacity-0");
+			drawer.setAttribute("aria-hidden", "false");
+			toggle.setAttribute("aria-expanded", "true");
+			toggle.setAttribute("aria-label", "Cerrar menú");
+			document.body.style.overflow = "hidden";
+			icon?.setAttribute("d", "M6 6l12 12M18 6L6 18");
+			drawer.querySelector("a")?.focus();
+		}
 
-    // Agrega un event listener a cada enlace dentro del menú para ocultar el menú cuando se hace clic en uno
-    menuLinks.forEach(link => {
-        link.addEventListener('click', hideMenu);
-    });
-});
+		function close() {
+			if (!toggle || !drawer) return;
+			drawer.classList.add("invisible", "opacity-0");
+			drawer.setAttribute("aria-hidden", "true");
+			toggle.setAttribute("aria-expanded", "false");
+			toggle.setAttribute("aria-label", "Abrir menú");
+			document.body.style.overflow = "";
+			icon?.setAttribute("d", "M3 7h18M3 17h18");
+		}
+
+		function initMenu() {
+			const nextToggle = document.getElementById("menu-toggle");
+			const nextDrawer = document.getElementById("drawer");
+			if (!nextToggle || !nextDrawer || nextToggle === toggle) return;
+
+			toggle = nextToggle;
+			drawer = nextDrawer;
+			icon = document.getElementById("menu-icon-open");
+
+			toggle.addEventListener("click", function () {
+				if (toggle.getAttribute("aria-expanded") === "true") {
+					close();
+				} else {
+					open();
+				}
+			});
+
+			drawer
+				.querySelector("[data-drawer-overlay]")
+				?.addEventListener("click", close);
+
+			drawer.addEventListener("click", function (event) {
+				if (event.target instanceof Element && event.target.closest("a"))
+					close();
+			});
+		}
+
+		document.addEventListener("keydown", function (event) {
+			if (event.key === "Escape") close();
+		});
+
+		window.addEventListener("resize", function () {
+			if (window.innerWidth >= 768) close();
+		});
+
+		document.addEventListener("astro:before-swap", close);
+		document.addEventListener("astro:page-load", initMenu);
+
+		initMenu();
+	})();
 </script>
-
-<style>
-    @media (max-width: 768px) {
-  #menu {
-    display: none;
-    position: absolute;
-    top: 50px; /* Ajusta esto según la altura de tu header */
-    left: 0;
-    right: 0; /* Cambia el color de fondo según tu preferencia */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Agrega sombra al menú */
-    padding: 10px;
-    z-index: 999; /* Asegúrate de que el menú aparezca encima de otros elementos */
-  }
-  
-  #menu.open {
-    display: flex;
-    flex-direction: column;
-  }
-}
-</style>
